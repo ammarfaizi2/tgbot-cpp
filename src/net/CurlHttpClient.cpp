@@ -45,6 +45,7 @@ static std::size_t curlWriteString(char* ptr, std::size_t size, std::size_t nmem
 std::string CurlHttpClient::makeRequest(const Url& url, const std::vector<HttpReqArg>& args) const {
     CURL* curl = getCurlHandle(this);
 
+    curl_easy_reset(curl);
     std::string u = url.protocol + "://" + url.host + url.path;
     if (args.empty()) {
         u += "?" + url.query;
